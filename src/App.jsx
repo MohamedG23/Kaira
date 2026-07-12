@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './layouts/Layout'
+import Login from './pages/Login'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route path='/About' element={<h1>About</h1>}/>
           <Route path='/Contact' element={<h1>Contact</h1>}/>
         </Route>
+        <Route path='login' element={<Login/>}/>
       </Routes>
       </BrowserRouter>
     </div>
