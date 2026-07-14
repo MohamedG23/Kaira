@@ -1,9 +1,15 @@
-import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { CiSearch } from "react-icons/ci";
 
-export default function 
-() {
+export default function Layout() {
+    const navgetion= useNavigate()
+    useEffect(()=>{
+        let token= localStorage.getItem('token') || sessionStorage.getItem('token') ;
+        if(!token){
+            navgetion('/login')
+        }
+    },[])
   return (
     <div className='flex justify-center py-5 h-dvh overflow-auto font-myfont'>
         <div className='container flex flex-col gap-3'>

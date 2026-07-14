@@ -4,18 +4,15 @@ import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-export default function Login() {
+export default function Register() {
   const navgation= useNavigate()
-
-const handelregister =()=>{
-  navgation('/register')
-}
   const handelsubmit =(values)=>{
     let domin = 'http://localhost:1337'
-    let endpoint = '/api/auth/local' ;
+    let endpoint = '/api/auth/local/register' ;
     let url= domin + endpoint ;
     let data = {
-      identifier: values.email ,
+      username: values.username,
+      email: values.email ,
       password: values.password ,
     }
     axios.post(url,data).then((res)=>{
@@ -28,32 +25,30 @@ const handelregister =()=>{
       toast.error(err.response.data.error.message)
     })
   }
-
-    useEffect(()=>{
-        let token= localStorage.getItem('token') || sessionStorage.getItem('token') ;
-        if(token){
-            navgation('/')
-        }
-    },[])
+  
+      useEffect(()=>{
+          let token= localStorage.getItem('token') || sessionStorage.getItem('token') ;
+          if(token){
+              navgation('/')
+          }
+      },[])
 
 const validationSchema = Yup.object({
+  username: Yup.string().required(),
   email: Yup.string().required().email(),
   password:Yup.string().required(),
 })
   return (
     <div className='bg-black w-full h-dvh text-gray-500 flex justify-center items-center'>
-        <Formik initialValues={{email:'',password:'', ischecked:false}} validationSchema={validationSchema}  onSubmit={handelsubmit} >
+        <Formik initialValues={{email:'',password:'', username:''}} validationSchema={validationSchema}  onSubmit={handelsubmit} >
           <Form className='w-[400px] rounded bg-gray-500  p-4 shadow border flex flex-col gap-3'>
+            <Field className="w-full input rounded" name="username" type="text" placeholder="Enter Your username" />
             <Field className="w-full input rounded" name="email" type="text" placeholder="Enter Your email" />
             <ErrorMessage name='email' component={'p'} className='text-red-600'/>
             <Field className="w-full input rounded" name="password" type="password" placeholder="Enter Your password" />
             <ErrorMessage name='password' component={'p'} className='text-red-600'/>
-            <label className='flex text-black gap-3' >
-              <Field type='checkbox' name='ischecked' className='checkbox checkbox-primary'/>
-              Remember Me
-            </label>
-            <button type='submit' className='btn btn-primary w-full rounded'>Login</button>
-            <Link to={'/register'} className='btn btn-success w-full'>Register</Link>
+            <button type='submit' className='btn btn-primary w-full rounded'>Register</button>
+            <Link to={'/login'} className='btn btn-success w-full'>Login</Link>
           </Form>
         </Formik>
     </div>
