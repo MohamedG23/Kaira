@@ -11,7 +11,7 @@ export default function Layout() {
         }
     },[])
   return (
-    <div className='flex justify-center py-5 h-dvh overflow-auto font-myfont'>
+    <div className='flex justify-center py-5 h-dvh overflow-auto font-myfont bg-gray-100'>
         <div className='container flex flex-col gap-3'>
             <div className='flex justify-between items-center'>
                 <h1 className='text-4xl'>KAIRA</h1>

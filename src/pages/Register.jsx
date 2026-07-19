@@ -17,7 +17,7 @@ export default function Register() {
     }
     axios.post(url,data).then((res)=>{
       let token = res.data.jwt ;
-     values.ischecked? localStorage.setItem ('token', token):sessionStorage.setItem('token', token)
+      values.ischecked? localStorage.setItem ('token', token):sessionStorage.setItem('token', token)
       toast.success('success login')
       navgation('/')
     })
@@ -39,9 +39,9 @@ const validationSchema = Yup.object({
   password:Yup.string().required(),
 })
   return (
-    <div className='bg-black w-full h-dvh text-gray-500 flex justify-center items-center'>
+    <div className='bg-white w-full h-dvh text-gray-500 flex justify-center items-center'>
         <Formik initialValues={{email:'',password:'', username:''}} validationSchema={validationSchema}  onSubmit={handelsubmit} >
-          <Form className='w-[400px] rounded bg-gray-500  p-4 shadow border flex flex-col gap-3'>
+          <Form className='w-[400px] pt-5 rounded bg-gray-200/20 border-gray-400 p-4 shadow-2xl border flex flex-col gap-3'>
             <Field className="w-full input rounded" name="username" type="text" placeholder="Enter Your username" />
             <Field className="w-full input rounded" name="email" type="text" placeholder="Enter Your email" />
             <ErrorMessage name='email' component={'p'} className='text-red-600'/>

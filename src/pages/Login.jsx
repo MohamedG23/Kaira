@@ -41,12 +41,12 @@ const validationSchema = Yup.object({
   password:Yup.string().required(),
 })
   return (
-    <div className='bg-black w-full h-dvh text-gray-500 flex justify-center items-center'>
+    <div className='bg-white w-full h-dvh text-gray-500 flex justify-center items-center'>
         <Formik initialValues={{email:'',password:'', ischecked:false}} validationSchema={validationSchema}  onSubmit={handelsubmit} >
-          <Form className='w-[400px] rounded bg-gray-500  p-4 shadow border flex flex-col gap-3'>
-            <Field className="w-full input rounded" name="email" type="text" placeholder="Enter Your email" />
+          <Form className='w-[400px] pt-5 rounded bg-gray-200/20 border-gray-400 p-4 shadow-2xl border flex flex-col gap-3'>
+            <Field className="w-full input rounded " name="email" type="text" placeholder="Enter Your email" />
             <ErrorMessage name='email' component={'p'} className='text-red-600'/>
-            <Field className="w-full input rounded" name="password" type="password" placeholder="Enter Your password" />
+            <Field className="w-full input rounded " name="password" type="password" placeholder="Enter Your password" />
             <ErrorMessage name='password' component={'p'} className='text-red-600'/>
             <label className='flex text-black gap-3' >
               <Field type='checkbox' name='ischecked' className='checkbox checkbox-primary'/>
